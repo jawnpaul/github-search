@@ -25,7 +25,8 @@ ext {
             kotlinKapt         : "kotlin-kapt",
             daggerHilt         : "dagger.hilt.android.plugin",
             kotlinParcelize    : "kotlin-parcelize",
-            jacocoCorePlugin   : "org.jacoco:org.jacoco.core:0.8.4"
+            jacocoCorePlugin   : "org.jacoco:org.jacoco.core:0.8.4",
+            navArgs            : "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_args"
     ]
 
 
