@@ -28,6 +28,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/login_text_input_edit_text"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
@@ -41,7 +42,7 @@
             android:layout_below="@id/login_text_input_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/twenty_four"
-            android:enabled="true"
+            android:enabled="false"
             android:text="@string/submit" />
     </RelativeLayout>
 </layout>
