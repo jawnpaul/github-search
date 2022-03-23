@@ -1,36 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorGreyMid"
-    tools:context=".features.result.presentation.view.ResultFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="com.example.githubsearch.MainViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        tools:listitem="@layout/single_result_item" />
+        android:layout_height="match_parent"
+        android:background="@color/colorGreyMid"
+        tools:context=".features.result.presentation.view.ResultFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sixteen"
-            android:layout_weight="1"
-            android:text="@string/prev" />
+            android:visibility="@{mainViewModel.searchResult.loading ? View.VISIBLE : View.GONE, default=visible}"
+            app:shimmer_auto_start="true"
+            app:shimmer_highlight_color="@color/strokeColor">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/result_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/sixteen"
-            android:layout_weight="1"
-            android:text="@string/next" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_alignParentTop="true"
+            android:visibility="@{mainViewModel.searchResult.result != null ? View.VISIBLE : View.GONE, default=gone}"
+            app:searchResults="@{mainViewModel.searchResult.result}"
+            tools:listitem="@layout/single_result_item" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sixteen"
+                android:layout_weight="1"
+                android:text="@string/prev" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sixteen"
+                android:layout_weight="1"
+                android:text="@string/next" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
+
