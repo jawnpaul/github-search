@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/card_layout_background"
+    android:layout_marginBottom="@dimen/sixteen"
+    android:layout_marginStart="@dimen/sixteen"
+    android:layout_marginEnd="@dimen/sixteen"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/avatar_image_view"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/sixteen" />
+
+    <TextView
+        android:id="@+id/name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twenty_four"
+        android:layout_marginBottom="@dimen/sixteen"
+        android:layout_toEndOf="@id/avatar_image_view"
+        tools:text="Matthew" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_text_view"
+        tools:text="User"
+        android:layout_toEndOf="@id/avatar_image_view" />
+</RelativeLayout>

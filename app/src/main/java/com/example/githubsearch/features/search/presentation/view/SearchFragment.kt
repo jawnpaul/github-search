@@ -39,6 +39,10 @@ class SearchFragment : Fragment() {
 
         viewModel.loginView.observe(viewLifecycleOwner, {
             if (it?.response != null) {
+
+                // Make API call to github
+                viewModel.performSearch(binding.loginTextInputEditText.text.toString(), 1)
+
                 val action = SearchFragmentDirections.actionSearchFragmentToResultFragment()
                 findNavController().safeNavigate(action)
 
