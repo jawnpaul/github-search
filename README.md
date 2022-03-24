@@ -1,4 +1,6 @@
 
+[![Android Build](https://github.com/jawnpaul/github-search/actions/workflows/android_build.yml/badge.svg)](https://github.com/jawnpaul/github-search/actions/workflows/android_build.yml)
+
 # Github Search
 
 An Android application to search for Github users. The application allows user to search
