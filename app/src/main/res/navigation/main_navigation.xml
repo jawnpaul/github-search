@@ -18,5 +18,9 @@
         android:id="@+id/resultFragment"
         android:name="com.example.githubsearch.features.result.presentation.view.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="query"
+            app:argType="string" />
+    </fragment>
 </navigation>

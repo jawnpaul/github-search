@@ -43,7 +43,8 @@ class SearchFragment : Fragment() {
                 // Make API call to github
                 viewModel.performSearch(binding.loginTextInputEditText.text.toString(), 1)
 
-                val action = SearchFragmentDirections.actionSearchFragmentToResultFragment()
+                val action =
+                    SearchFragmentDirections.actionSearchFragmentToResultFragment(binding.loginTextInputEditText.text.toString())
                 findNavController().safeNavigate(action)
 
                 // Unset value to handle back navigation

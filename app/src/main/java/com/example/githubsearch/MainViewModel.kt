@@ -28,6 +28,9 @@ class MainViewModel @Inject constructor(
     private val _searchResult = MutableLiveData<ResultView>()
     val searchResult: LiveData<ResultView> get() = _searchResult
 
+    private val _nextPage = MutableLiveData<Int?>()
+    val nextPage: LiveData<Int?> get() = _nextPage
+
     fun search(params: String) {
         searchUseCase(job, params) {
             it.fold(
@@ -73,6 +76,10 @@ class MainViewModel @Inject constructor(
         _searchResult.value =
             ResultView(loading = false, result = result.map { it.toPresentation() })
         Timber.d(result.size.toString())
+    }
+
+    fun setPage(page: Int) {
+        _nextPage.value = page
     }
 
     override fun onCleared() {

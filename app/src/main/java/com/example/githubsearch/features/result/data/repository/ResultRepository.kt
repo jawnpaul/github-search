@@ -21,7 +21,7 @@ class ResultRepository @Inject constructor(private val apiService: ApiService) :
                     when (res.isSuccessful) {
                         true -> {
                             res.body()?.let { it ->
-                                Either.Right(it.map { it.toDomainObject() })
+                                Either.Right(it.users.map { it.toDomainObject() }.sortedBy { it.name })
                             } ?: Either.Left(Failure.DataError)
                         }
                         false -> {

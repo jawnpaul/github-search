@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.example.githubsearch.MainViewModel
 import com.example.githubsearch.R
 import com.example.githubsearch.core.utility.initRecyclerViewWithoutLineDecoration
@@ -19,6 +20,9 @@ class ResultFragment : Fragment() {
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!!
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private val args: ResultFragmentArgs by navArgs()
+    private var query = ""
+    private var currentPage = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +42,35 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
+
+        query = args.query
+
+        viewModel.nextPage.observe(viewLifecycleOwner, {
+            it?.let { page ->
+                viewModel.performSearch(query, page)
+            }
+        })
+
+        enablePrevButton(currentPage)
+
+        binding.nextButton.setOnClickListener {
+            viewModel.setPage(currentPage + 1)
+            currentPage += 1
+            enablePrevButton(currentPage)
+        }
+
+        binding.prevButton.setOnClickListener {
+            if (currentPage > 1) {
+                viewModel.setPage(currentPage - 1)
+                currentPage -= 1
+                enablePrevButton(currentPage)
+            }
+        }
     }
 
-    private fun setUpAdapter(){
+    private fun setUpAdapter() {
         val viewModel = binding.mainViewModel
-        if (viewModel != null){
+        if (viewModel != null) {
             searchResultAdapter = SearchResultAdapter()
 
             context?.let {
@@ -50,6 +78,10 @@ class ResultFragment : Fragment() {
             }
             binding.resultRecyclerView.adapter = searchResultAdapter
         }
+    }
+
+    private fun enablePrevButton(currentPage: Int) {
+        binding.prevButton.isEnabled = currentPage != 1
     }
 
 }
