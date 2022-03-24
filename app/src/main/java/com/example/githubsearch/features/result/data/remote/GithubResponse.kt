@@ -4,7 +4,7 @@ import com.example.githubsearch.features.result.domain.model.SearchResult
 import com.squareup.moshi.Json
 
 data class GithubResponse(
-    @field:Json(name = "total_count") val totalCount: String,
+    @field:Json(name = "total_count") val totalCount: Int,
     @field:Json(name = "incomplete_results") val incomplete: Boolean,
     @field:Json(name = "items") val users: List<UserResponse>,
 )

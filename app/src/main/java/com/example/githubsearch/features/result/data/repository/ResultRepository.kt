@@ -4,6 +4,7 @@ import com.example.githubsearch.core.api.ApiService
 import com.example.githubsearch.core.exception.Failure
 import com.example.githubsearch.core.functional.Either
 import com.example.githubsearch.features.result.data.model.SearchQuery
+import com.example.githubsearch.features.result.domain.mappers.toDomainObjects
 import com.example.githubsearch.features.result.domain.model.SearchResult
 import com.example.githubsearch.features.result.domain.repository.IResultRepository
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ class ResultRepository @Inject constructor(private val apiService: ApiService) :
                     when (res.isSuccessful) {
                         true -> {
                             res.body()?.let { it ->
-                                Either.Right(it.users.map { it.toDomainObject() }.sortedBy { it.name })
+                                Either.Right(it.toDomainObjects())
                             } ?: Either.Left(Failure.DataError)
                         }
                         false -> {
