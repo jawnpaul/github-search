@@ -7,6 +7,7 @@ import com.example.githubsearch.core.exception.Failure
 import com.example.githubsearch.features.result.data.model.SearchQuery
 import com.example.githubsearch.features.result.domain.model.SearchResult
 import com.example.githubsearch.features.result.domain.usecases.PerformSearchUseCase
+import com.example.githubsearch.features.result.presentation.mapper.toPresentation
 import com.example.githubsearch.features.result.presentation.state.ResultView
 import com.example.githubsearch.features.search.domain.usecase.SearchUseCase
 import com.example.githubsearch.features.search.presentation.state.LoginView
