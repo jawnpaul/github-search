@@ -36,7 +36,7 @@ The Application is split into a three layer architecture:
 #### Data
 
 The data layer handles the business logic and provides data from the
-Github API and a local database leveraging Room. This layer uses the
+Github API. This layer uses the
 Repository pattern to fetch data from various data sources which in
 this case is the Github API.
 
