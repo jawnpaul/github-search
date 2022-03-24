@@ -48,10 +48,10 @@ class MainViewModel @Inject constructor(
     private fun handleLoginFailure(failure: Failure) {
         when (failure) {
             is Failure.UnAuthorizedError -> {
-                _loginView.value = LoginView(error = "Invalid login")
+                _loginView.value = LoginView(error = "Invalid login", response = false)
             }
             else -> {
-                _loginView.value = LoginView(error = "Something went wrong.")
+                _loginView.value = LoginView(error = "Something went wrong.", response = false)
             }
         }
     }
