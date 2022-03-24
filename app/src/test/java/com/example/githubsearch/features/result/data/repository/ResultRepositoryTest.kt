@@ -8,7 +8,6 @@ import com.example.githubsearch.features.result.data.model.SearchQuery
 import com.example.githubsearch.features.result.data.remote.GithubResponse
 import com.example.githubsearch.features.result.data.remote.UserResponse
 import com.example.githubsearch.features.result.domain.mappers.toDomainObjects
-import com.google.common.truth.ExpectFailure.assertThat
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -26,7 +25,6 @@ class ResultRepositoryTest : UnitTest() {
     private var perPage: Int = 0
     private var page: Int = 1
     private lateinit var repository: ResultRepository
-
 
     @MockK
     private lateinit var apiService: ApiService
@@ -47,9 +45,11 @@ class ResultRepositoryTest : UnitTest() {
         every { githubResponse.body() } returns null
         every { githubResponse.isSuccessful } returns true
         coEvery {
-            apiService.searchUser(searchQuery,
+            apiService.searchUser(
+                searchQuery,
                 perPage,
-                page)
+                page
+            )
         } returns githubResponse
 
         val response = repository.performSearch(SearchQuery(searchQuery, page))
@@ -64,9 +64,11 @@ class ResultRepositoryTest : UnitTest() {
         runBlockingTest {
             every { githubResponse.isSuccessful } returns false
             coEvery {
-                apiService.searchUser(searchQuery,
+                apiService.searchUser(
+                    searchQuery,
                     perPage,
-                    page)
+                    page
+                )
             } returns githubResponse
 
             val response = repository.performSearch(SearchQuery(searchQuery, page))
@@ -80,55 +82,60 @@ class ResultRepositoryTest : UnitTest() {
         val localResponse = GithubResponse(
             totalCount = 1000,
             incomplete = false,
-            users = listOf(UserResponse(
-                name = "John",
-                id = 1,
-                nodeId = "sd",
-                avatarUrl = "avatar url",
-                gravatar = "gravatar",
-                url = "url",
-                htmlUrl = "",
-                followersUrl = "",
-                followingUrl = "",
-                gistUrl = "",
-                starredUrl = "",
-                subscriptionUrl = "",
-                organizationUrl = "",
-                repoUrl = "",
-                eventUrl = "",
-                receivedEventUrl = "",
-                type = "User",
-                siteAdmin = false,
-                score = 1F
-            ), UserResponse(
-                name = "Doe",
-                id = 2,
-                nodeId = "sd",
-                avatarUrl = "avatar url",
-                gravatar = "gravatar",
-                url = "url",
-                htmlUrl = "",
-                followersUrl = "",
-                followingUrl = "",
-                gistUrl = "",
-                starredUrl = "",
-                subscriptionUrl = "",
-                organizationUrl = "",
-                repoUrl = "",
-                eventUrl = "",
-                receivedEventUrl = "",
-                type = "User",
-                siteAdmin = false,
-                score = 1F
-            ))
+            users = listOf(
+                UserResponse(
+                    name = "John",
+                    id = 1,
+                    nodeId = "sd",
+                    avatarUrl = "avatar url",
+                    gravatar = "gravatar",
+                    url = "url",
+                    htmlUrl = "",
+                    followersUrl = "",
+                    followingUrl = "",
+                    gistUrl = "",
+                    starredUrl = "",
+                    subscriptionUrl = "",
+                    organizationUrl = "",
+                    repoUrl = "",
+                    eventUrl = "",
+                    receivedEventUrl = "",
+                    type = "User",
+                    siteAdmin = false,
+                    score = 1F
+                ),
+                UserResponse(
+                    name = "Doe",
+                    id = 2,
+                    nodeId = "sd",
+                    avatarUrl = "avatar url",
+                    gravatar = "gravatar",
+                    url = "url",
+                    htmlUrl = "",
+                    followersUrl = "",
+                    followingUrl = "",
+                    gistUrl = "",
+                    starredUrl = "",
+                    subscriptionUrl = "",
+                    organizationUrl = "",
+                    repoUrl = "",
+                    eventUrl = "",
+                    receivedEventUrl = "",
+                    type = "User",
+                    siteAdmin = false,
+                    score = 1F
+                )
+            )
         )
 
         every { githubResponse.isSuccessful } returns true
         every { githubResponse.body() } returns localResponse
         coEvery {
-            apiService.searchUser(searchQuery,
+            apiService.searchUser(
+                searchQuery,
                 perPage,
-                page)
+                page
+            )
         } returns githubResponse
 
         val result = repository.performSearch(SearchQuery(searchQuery, page))

@@ -10,7 +10,6 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
 
-
 @ExperimentalCoroutinesApi
 class SearchRepositoryTest : UnitTest() {
 

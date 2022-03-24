@@ -7,7 +7,6 @@ import com.example.githubsearch.features.result.domain.model.SearchResult
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-
 class JsonResponseToDomainKtTest : UnitTest() {
 
     @Test
@@ -38,51 +37,53 @@ class JsonResponseToDomainKtTest : UnitTest() {
         val githubResponse = GithubResponse(
             totalCount = 1000,
             incomplete = false,
-            users = listOf(UserResponse(
-                name = "John",
-                id = 1,
-                nodeId = "sd",
-                avatarUrl = "avatar url",
-                gravatar = "gravatar",
-                url = "url",
-                htmlUrl = "",
-                followersUrl = "",
-                followingUrl = "",
-                gistUrl = "",
-                starredUrl = "",
-                subscriptionUrl = "",
-                organizationUrl = "",
-                repoUrl = "",
-                eventUrl = "",
-                receivedEventUrl = "",
-                type = "User",
-                siteAdmin = false,
-                score = 1F
-            ), UserResponse(
-                name = "Doe",
-                id = 2,
-                nodeId = "sd",
-                avatarUrl = "avatar url",
-                gravatar = "gravatar",
-                url = "url",
-                htmlUrl = "",
-                followersUrl = "",
-                followingUrl = "",
-                gistUrl = "",
-                starredUrl = "",
-                subscriptionUrl = "",
-                organizationUrl = "",
-                repoUrl = "",
-                eventUrl = "",
-                receivedEventUrl = "",
-                type = "User",
-                siteAdmin = false,
-                score = 1F
-            ))
+            users = listOf(
+                UserResponse(
+                    name = "John",
+                    id = 1,
+                    nodeId = "sd",
+                    avatarUrl = "avatar url",
+                    gravatar = "gravatar",
+                    url = "url",
+                    htmlUrl = "",
+                    followersUrl = "",
+                    followingUrl = "",
+                    gistUrl = "",
+                    starredUrl = "",
+                    subscriptionUrl = "",
+                    organizationUrl = "",
+                    repoUrl = "",
+                    eventUrl = "",
+                    receivedEventUrl = "",
+                    type = "User",
+                    siteAdmin = false,
+                    score = 1F
+                ),
+                UserResponse(
+                    name = "Doe",
+                    id = 2,
+                    nodeId = "sd",
+                    avatarUrl = "avatar url",
+                    gravatar = "gravatar",
+                    url = "url",
+                    htmlUrl = "",
+                    followersUrl = "",
+                    followingUrl = "",
+                    gistUrl = "",
+                    starredUrl = "",
+                    subscriptionUrl = "",
+                    organizationUrl = "",
+                    repoUrl = "",
+                    eventUrl = "",
+                    receivedEventUrl = "",
+                    type = "User",
+                    siteAdmin = false,
+                    score = 1F
+                )
+            )
         )
         val expected = listOf(userOne, userTwo)
         assertThat(githubResponse.toDomainObjects()).isNotEmpty()
         assertThat(githubResponse.toDomainObjects()).isEqualTo(expected)
     }
-
 }

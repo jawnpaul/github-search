@@ -1,14 +1,13 @@
 package com.example.githubsearch.features.result.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.githubsearch.MainViewModel
-import com.example.githubsearch.R
 import com.example.githubsearch.core.utility.initRecyclerViewWithoutLineDecoration
 import com.example.githubsearch.databinding.FragmentResultBinding
 import com.example.githubsearch.features.result.presentation.adapter.SearchResultAdapter
@@ -26,11 +25,11 @@ class ResultFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentResultBinding.inflate(layoutInflater, container, false)
@@ -45,11 +44,14 @@ class ResultFragment : Fragment() {
 
         query = args.query
 
-        viewModel.nextPage.observe(viewLifecycleOwner, {
-            it?.let { page ->
-                viewModel.performSearch(query, page)
+        viewModel.nextPage.observe(
+            viewLifecycleOwner,
+            {
+                it?.let { page ->
+                    viewModel.performSearch(query, page)
+                }
             }
-        })
+        )
 
         enablePrevButton(currentPage)
 
@@ -83,5 +85,4 @@ class ResultFragment : Fragment() {
     private fun enablePrevButton(currentPage: Int) {
         binding.prevButton.isEnabled = currentPage != 1
     }
-
 }

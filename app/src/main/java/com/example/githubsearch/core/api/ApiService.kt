@@ -1,7 +1,6 @@
 package com.example.githubsearch.core.api
 
 import com.example.githubsearch.features.result.data.remote.GithubResponse
-import com.example.githubsearch.features.result.data.remote.UserResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

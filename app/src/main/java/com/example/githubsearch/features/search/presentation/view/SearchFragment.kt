@@ -1,15 +1,14 @@
 package com.example.githubsearch.features.search.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.githubsearch.MainViewModel
-import com.example.githubsearch.R
 import com.example.githubsearch.core.utility.afterTextChanged
 import com.example.githubsearch.core.utility.safeNavigate
 import com.example.githubsearch.databinding.FragmentSearchBinding
@@ -23,11 +22,11 @@ class SearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
@@ -37,24 +36,27 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loginView.observe(viewLifecycleOwner, {
-            if (it?.response != null) {
+        viewModel.loginView.observe(
+            viewLifecycleOwner,
+            {
+                if (it?.response != null) {
 
-                // Make API call to github
-                viewModel.performSearch(binding.loginTextInputEditText.text.toString(), 1)
+                    // Make API call to github
+                    viewModel.performSearch(binding.loginTextInputEditText.text.toString(), 1)
 
-                val action =
-                    SearchFragmentDirections.actionSearchFragmentToResultFragment(binding.loginTextInputEditText.text.toString())
-                findNavController().safeNavigate(action)
+                    val action =
+                        SearchFragmentDirections.actionSearchFragmentToResultFragment(binding.loginTextInputEditText.text.toString())
+                    findNavController().safeNavigate(action)
 
-                // Unset value to handle back navigation
-                it.response = null
+                    // Unset value to handle back navigation
+                    it.response = null
+                }
+
+                if (it?.error != null) {
+                    Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
+                }
             }
-
-            if (it?.error != null) {
-                Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-            }
-        })
+        )
 
         binding.submitButton.setOnClickListener {
             viewModel.search(binding.loginTextInputEditText.text.toString())
@@ -63,6 +65,5 @@ class SearchFragment : Fragment() {
         binding.loginTextInputEditText.afterTextChanged {
             binding.submitButton.isEnabled = it.isNotEmpty()
         }
-
     }
 }

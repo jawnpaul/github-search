@@ -33,14 +33,21 @@ class PerformSearchUseCaseTest : UnitTest() {
         coEvery {
             repository.performSearch(query)
         } returns flow {
-            emit(Either.Right(listOf(SearchResult(avatarUrl = "url",
-                name = "name",
-                type = "type"))))
+            emit(
+                Either.Right(
+                    listOf(
+                        SearchResult(
+                            avatarUrl = "url",
+                            name = "name",
+                            type = "type"
+                        )
+                    )
+                )
+            )
         }
         performSearchUseCase.run(query)
         coVerify(exactly = 1) {
             repository.performSearch(query)
         }
     }
-
 }
