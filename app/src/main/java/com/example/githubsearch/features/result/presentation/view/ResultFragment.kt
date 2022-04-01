@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.githubsearch.MainViewModel
 import com.example.githubsearch.core.utility.initRecyclerViewWithoutLineDecoration
@@ -65,6 +66,8 @@ class ResultFragment : Fragment() {
                 viewModel.setPage(currentPage - 1)
                 currentPage -= 1
                 enablePrevButton(currentPage)
+            } else {
+                findNavController().navigateUp()
             }
         }
     }

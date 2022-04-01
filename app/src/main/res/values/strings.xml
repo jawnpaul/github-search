@@ -3,5 +3,6 @@
     <string name="login">Login</string>
     <string name="submit">Submit</string>
     <string name="prev">Prev</string>
+    <string name="back">Back</string>
     <string name="next">Next</string>
 </resources>
