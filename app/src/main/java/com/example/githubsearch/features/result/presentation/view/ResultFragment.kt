@@ -45,13 +45,12 @@ class ResultFragment : Fragment() {
         query = args.query
 
         viewModel.nextPage.observe(
-            viewLifecycleOwner,
-            {
-                it?.let { page ->
-                    viewModel.performSearch(query, page)
-                }
+            viewLifecycleOwner
+        ) {
+            it?.let { page ->
+                viewModel.performSearch(query, page)
             }
-        )
+        }
 
         enablePrevButton(currentPage)
 
