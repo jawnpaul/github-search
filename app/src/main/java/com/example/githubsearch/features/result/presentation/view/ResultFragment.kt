@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -66,8 +67,6 @@ class ResultFragment : Fragment() {
                 viewModel.setPage(currentPage - 1)
                 currentPage -= 1
                 enablePrevButton(currentPage)
-            } else {
-                findNavController().navigateUp()
             }
         }
     }
@@ -85,6 +84,18 @@ class ResultFragment : Fragment() {
     }
 
     private fun enablePrevButton(currentPage: Int) {
-        binding.prevButton.isEnabled = currentPage != 1
+        if (currentPage != 1) {
+            binding.prevButton.visibility = View.VISIBLE
+            binding.backButton.visibility = View.GONE
+        } else {
+            binding.prevButton.visibility = View.GONE
+            binding.backButton.apply {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    findNavController().navigateUp()
+                }
+            }
+        }
+
     }
 }
