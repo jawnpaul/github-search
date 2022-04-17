@@ -132,6 +132,10 @@ dependencies {
     //Coil
     implementation Libraries.coil
 
+    //webviews
+    implementation Libraries.androidxBrowser
+    implementation Libraries.webKit
+
     testImplementation TestLibraries.testCore
     testImplementation TestLibraries.archCore
     testImplementation TestLibraries.junit
