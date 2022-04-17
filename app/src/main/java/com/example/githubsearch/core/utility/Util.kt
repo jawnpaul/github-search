@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubsearch.WebViewActivity
 import com.google.android.material.textfield.TextInputEditText
 
 fun NavController.safeNavigate(direction: NavDirections) {
