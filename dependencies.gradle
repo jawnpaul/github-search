@@ -9,7 +9,7 @@ ext {
 
 
     AndroidSdk = [
-            compileSdk: 30,
+            compileSdk: 31,
             targetSdk : 30,
             minSdk    : 21,
             buildTools: "30.0.3"

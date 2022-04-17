@@ -10,10 +10,11 @@ class DomainToPresentationTest : UnitTest() {
 
     @Test
     fun `domain to presentation should return presentation object`() {
-        val searchResult = SearchResult("syz", "john", "User")
+        val searchResult = SearchResult("profile", "syz", "john", "User")
 
         assertThat(searchResult.toPresentation()).isEqualTo(
             SearchResultPresentation(
+                "profile",
                 "syz",
                 "john",
                 "User"
