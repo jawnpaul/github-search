@@ -10,18 +10,24 @@ import coil.transform.CircleCropTransformation
 import com.example.githubsearch.databinding.SingleResultItemBinding
 import com.example.githubsearch.features.result.presentation.model.SearchResultPresentation
 
-class SearchResultAdapter() :
+class SearchResultAdapter(private val onProfileClicked: (item: SearchResultPresentation, position: Int) -> Unit) :
     ListAdapter<SearchResultPresentation, SearchResultAdapter.ViewHolder>(SearchResultDiffCallback()) {
 
     class ViewHolder constructor(private val binding: SingleResultItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: SearchResultPresentation,
+            position: Int,
+            onProfileClicked: (item: SearchResultPresentation, position: Int) -> Unit
         ) {
             binding.nameTextView.text = item.name
             binding.typeTextView.text = item.type
             binding.avatarImageView.load(item.avatarUrl) {
                 transformations(CircleCropTransformation())
+            }
+
+            binding.rootView.setOnClickListener {
+                onProfileClicked.invoke(item, position)
             }
         }
 
@@ -40,7 +46,7 @@ class SearchResultAdapter() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, position, onProfileClicked)
     }
 }
 

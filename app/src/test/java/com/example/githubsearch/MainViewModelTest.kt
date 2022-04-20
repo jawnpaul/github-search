@@ -48,7 +48,7 @@ class MainViewModelTest : UnitTest() {
         searchQuery = SearchQuery(query, page)
 
         result = listOf(
-            SearchResult(avatarUrl = "", name = "", type = "")
+            SearchResult(profileUrl = "", avatarUrl = "", name = "", type = "")
         )
 
         mainViewModel = MainViewModel(searchUseCase, performSearchUseCase)

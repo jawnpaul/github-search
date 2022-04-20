@@ -37,6 +37,7 @@ class PerformSearchUseCaseTest : UnitTest() {
                 Either.Right(
                     listOf(
                         SearchResult(
+                            profileUrl = "html_url",
                             avatarUrl = "url",
                             name = "name",
                             type = "type"

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.githubsearch.MainViewModel
 import com.example.githubsearch.core.utility.initRecyclerViewWithoutLineDecoration
+import com.example.githubsearch.core.utility.launchBrowser
 import com.example.githubsearch.databinding.FragmentResultBinding
 import com.example.githubsearch.features.result.presentation.adapter.SearchResultAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,7 +75,9 @@ class ResultFragment : Fragment() {
     private fun setUpAdapter() {
         val viewModel = binding.mainViewModel
         if (viewModel != null) {
-            searchResultAdapter = SearchResultAdapter()
+            searchResultAdapter = SearchResultAdapter(){ item, _ ->
+                launchBrowser(item.profileUrl, requireContext())
+            }
 
             context?.let {
                 binding.resultRecyclerView.initRecyclerViewWithoutLineDecoration(it)

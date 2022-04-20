@@ -30,5 +30,5 @@ data class UserResponse(
     @field:Json(name = "site_admin") val siteAdmin: Boolean,
     @field:Json(name = "score") val score: Float,
 ) {
-    fun toDomainObject() = SearchResult(avatarUrl = avatarUrl, name = name, type = type)
+    fun toDomainObject() = SearchResult(profileUrl = htmlUrl, avatarUrl = avatarUrl, name = name, type = type)
 }

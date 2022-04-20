@@ -5,5 +5,5 @@ import com.example.githubsearch.features.result.presentation.model.SearchResultP
 
 fun SearchResult.toPresentation(): SearchResultPresentation {
 
-    return SearchResultPresentation(avatarUrl = this.avatarUrl, name = this.name, type = this.type)
+    return SearchResultPresentation(profileUrl = this.profileUrl, avatarUrl = this.avatarUrl, name = this.name, type = this.type)
 }

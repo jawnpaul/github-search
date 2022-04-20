@@ -23,12 +23,14 @@ class JsonResponseToDomainKtTest : UnitTest() {
     fun `githubResponse to domain should return list`() {
 
         val userOne = SearchResult(
+            profileUrl = "",
             name = "John",
             avatarUrl = "avatar url",
             type = "User",
         )
 
         val userTwo = SearchResult(
+            profileUrl = "",
             name = "Doe",
             avatarUrl = "avatar url",
             type = "User",
